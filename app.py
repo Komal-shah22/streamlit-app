@@ -56,7 +56,7 @@ if uploaded_files:
 
         # Column Selection & Renaming
         st.subheader("✏️ Select & Rename Columns")
-        selected_columns = st.multiselect("Choose Columns to Keep", df.columns, default=df.columns)
+        selected_columns: list[str] = st.multiselect("Choose Columns to Keep", df.columns, default=df.columns)
 
         if selected_columns:
             df = df[selected_columns]
@@ -72,7 +72,7 @@ if uploaded_files:
 
         numeric_columns = df.select_dtypes(include=["number"]).columns
         if not numeric_columns.empty:
-            selected_col = st.selectbox("Choose Column for Visualization", numeric_columns)
+            selected_col: str = st.selectbox("Choose Column for Visualization", numeric_columns)
 
             if chart_type == "Bar Chart":
                 fig = px.bar(df, x=df.index, y=selected_col, title=f"Bar Chart of {selected_col}")
