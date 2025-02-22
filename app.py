@@ -75,39 +75,6 @@ def main():
             selected_value = st.selectbox("Select Value", unique_values)
             df = df[df[filter_column] == selected_value]
 
-            # Visualization Section
-            st.subheader("📈 Learning Analytics Dashboard")
-
-            # Example: Dummy Data for Chart
-            sample_data = pd.DataFrame({
-                "Day": list(range(1, 31)),
-                "Progress Score": [i + (i % 3) * 2 for i in range(1, 31)]
-            })
-
-            # Daily Progress Line Chart
-            fig_daily = px.line(
-                sample_data,
-                x="Day",
-                y="Progress Score",
-                title="Daily Learning Progress",
-                labels={"Day": "Day", "Progress Score": "Progress Score"}
-            )
-            st.plotly_chart(fig_daily)
-
-            # Learning Distribution Pie Chart
-            learning_distribution = {
-                "Coding Practice": 40,
-                "Video Tutorials": 20,
-                "Reading Docs": 15,
-                "Projects": 25
-            }
-            fig_pie = px.pie(
-                values=list(learning_distribution.values()),
-                names=list(learning_distribution.keys()),
-                title="Learning Activity Distribution"
-            )
-            st.plotly_chart(fig_pie)
-
             # File Conversion
             st.subheader("🔄 Convert File")
             conversion_type = st.radio(f"Convert {uploaded_file.name} to:", ["CSV", "Excel"])
